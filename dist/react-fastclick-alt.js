@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -113,7 +113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _inherits(ReactFastClick, _Component);
 
 	  function ReactFastClick() {
-	    var _Object$getPrototypeO;
+	    var _ref;
 
 	    var _temp, _this, _ret;
 
@@ -123,7 +123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactFastClick)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ReactFastClick.__proto__ || Object.getPrototypeOf(ReactFastClick)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      touchId: null,
 	      touchX: null,
 	      touchY: null,
@@ -169,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleTouchStart',
 	    value: function handleTouchStart(e) {
 	      // one+ touches means the user isn't trying to tap this element
-	      if (e.touches.length !== 1 || e.targetTouches.length !== 1) {
+	      if (e.touches.length !== 1 || e.targetTouches.length !== 1 || e.target.isContentEditable) {
 	        this.clearTouchData();
 	        return;
 	      }
@@ -192,8 +192,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'handleTouchMove',
 	    value: function handleTouchMove(e) {
-	      var touchId = this.state.touchId;
-	      var threshold = this.props.threshold;
+	      var touchId = this.state.touchId,
+	          threshold = this.props.threshold;
 
 
 	      if (touchId === null) {
@@ -221,11 +221,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'calculateTouchDistanceFromOrigin',
 	    value: function calculateTouchDistanceFromOrigin(touch) {
-	      var _state = this.state;
-	      var touchX = _state.touchX;
-	      var touchY = _state.touchY;
-	      var screenX = touch.screenX;
-	      var screenY = touch.screenY;
+	      var _state = this.state,
+	          touchX = _state.touchX,
+	          touchY = _state.touchY,
+	          screenX = touch.screenX,
+	          screenY = touch.screenY;
 
 
 	      return Math.sqrt(Math.pow(screenX - touchX, 2) + Math.pow(screenY - touchY, 2));
@@ -233,12 +233,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'handleTouchEnd',
 	    value: function handleTouchEnd(e) {
-	      var _state2 = this.state;
-	      var touchId = _state2.touchId;
-	      var touchTime = _state2.touchTime;
-	      var _props = this.props;
-	      var timeThreshold = _props.timeThreshold;
-	      var threshold = _props.threshold;
+	      var _state2 = this.state,
+	          touchId = _state2.touchId,
+	          touchTime = _state2.touchTime,
+	          _props = this.props,
+	          timeThreshold = _props.timeThreshold,
+	          threshold = _props.threshold;
 
 
 	      if (touchId === null) {
@@ -369,13 +369,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}, _temp2);
 	exports.default = ReactFastClick;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
