@@ -109,6 +109,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return isFocused(el) && isTextArea(el);
 	};
 
+	var isMultiTouch = function isMultiTouch(e) {
+	  return e.touches.length !== 1 || e.targetTouches.length !== 1;
+	};
+
+	var requiresNativeEvents = function requiresNativeEvents(el) {
+	  return isInput(el) && !isCheckbox(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit';
+	};
+
 	var ReactFastClick = (_temp2 = _class = function (_Component) {
 	  _inherits(ReactFastClick, _Component);
 
@@ -169,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleTouchStart',
 	    value: function handleTouchStart(e) {
 	      // one+ touches means the user isn't trying to tap this element
-	      if (e.touches.length !== 1 || e.targetTouches.length !== 1 || e.target.isContentEditable) {
+	      if (isMultiTouch(e) || requiresNativeEvents(e.target)) {
 	        this.clearTouchData();
 	        return;
 	      }
