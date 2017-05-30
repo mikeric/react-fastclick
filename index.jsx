@@ -38,6 +38,7 @@ const isMultiTouch = (e) => {
 
 const requiresNativeEvents = (el) => {
   return (isInput(el) && !isCheckbox(el)) ||
+    isSelect(el) ||
     isTextArea(el) ||
     el.isContentEditable ||
     el.type === 'submit';
