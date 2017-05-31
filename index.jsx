@@ -1,9 +1,5 @@
 import React, { DOM, PropTypes, Component } from 'react';
 
-const hasClass = (el, cls) => {
-  return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
-}
-
 const isFocused = (el) => {
   return document.activeElement === el;
 };
@@ -45,8 +41,7 @@ const requiresNativeEvents = (el) => {
     isSelect(el) ||
     isTextArea(el) ||
     el.isContentEditable ||
-    el.type === 'submit' ||
-    hasClass(el, 'requires-native-events');
+    el.type === 'submit';
 };
 
 export default class ReactFastClick extends Component {
