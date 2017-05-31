@@ -77,6 +77,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var hasClass = function hasClass(el, cls) {
+	  return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
+	};
+
 	var isFocused = function isFocused(el) {
 	  return document.activeElement === el;
 	};
@@ -114,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var requiresNativeEvents = function requiresNativeEvents(el) {
-	  return isInput(el) && !isCheckbox(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit';
+	  return isInput(el) && !isCheckbox(el) || isSelect(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit' || hasClass(el, 'requires-native-events');
 	};
 
 	var ReactFastClick = (_temp2 = _class = function (_Component) {
