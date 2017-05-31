@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var requiresNativeEvents = function requiresNativeEvents(el) {
-	  return isInput(el) && !isCheckbox(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit';
+	  return isInput(el) && !isCheckbox(el) || isSelect(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit';
 	};
 
 	var ReactFastClick = (_temp2 = _class = function (_Component) {
