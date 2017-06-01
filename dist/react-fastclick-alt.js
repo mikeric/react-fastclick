@@ -299,10 +299,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return;
 	      }
 
-	      // trigger a blur manually on the active element if tapping outside. this is needed to simulate
-	      // similar behaviour as on desktop browsers (which is mousedown -> blur -> mouseup -> click).
-	      if (document.activeElement && document.activeElement !== targetEl) {
-	        document.activeElement.blur();
+	      // Allow hooking into this handler before triggering synthetic click.
+	      if (this.props.willTriggerClick) {
+	        this.props.willTriggerClick(e, targetEl);
 	      }
 
 	      // prevent the simulated mouse events
