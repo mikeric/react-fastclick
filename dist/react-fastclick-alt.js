@@ -114,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var requiresNativeEvents = function requiresNativeEvents(el) {
-	  return isInput(el) && !isCheckbox(el) || isSelect(el) || isTextArea(el) || el.isContentEditable || el.type === 'submit';
+	  return isInput(el) && !isCheckbox(el) || isSelect(el) || isTextArea(el) || el.isContentEditable;
 	};
 
 	var ReactFastClick = (_temp2 = _class = function (_Component) {
@@ -297,6 +297,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if ((isFocusedInput(targetEl) || isFocusedTextArea(targetEl)) && !isCheckbox(targetEl)) {
 	        this.clearTouchData();
 	        return;
+	      }
+
+	      // trigger a blur manually on the active element if tapping outside. this is needed to simulate
+	      // similar behaviour as on desktop browsers (which is mousedown -> blur -> mouseup -> click).
+	      if (document.activeElement && document.activeElement !== targetEl) {
+	        document.activeElement.blur();
 	      }
 
 	      // prevent the simulated mouse events
